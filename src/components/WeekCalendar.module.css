@@ -1,0 +1,155 @@
+.weekIndicator {
+  display: flex;
+  padding: 1rem 0;
+  padding-left: 4rem;
+}
+.weekIndicatorItem {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-weight: 500;
+}
+.weekIndicatorItem span {
+  text-align: center;
+  display: block;
+}
+
+.timeIndicators {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 4rem;
+  position: relative;
+  height: calc(48px * ((24 * 2) - (7.5 * 2)));
+}
+.timeIndicators::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #e6e6e6;
+}
+.timeIndicators::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #e6e6e6;
+  position: absolute;
+  bottom: -1px;
+}
+.timeIndicatorItem {
+  position: relative;
+  height: 48px;
+}
+.timeIndicatorItem span {
+  position: absolute;
+  bottom: -10px;
+}
+.time_gird {
+  flex: 1 1 auto;
+  display: flex;
+  height: 100%;
+  position: relative;
+}
+.day_gird {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  height: calc(48px * ((24 * 2) - (7.5 * 2)));
+}
+.time_day {
+  height: 48px;
+}
+.time_day::after {
+  content: "";
+  border-bottom: #dadce0 1px solid;
+  position: absolute;
+  width: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+.time_gird .day_gird:not(:last-child) {
+  border-right: 1px solid #ece9f3;
+}
+
+.day_gird .time_day:first-child {
+  border-top: 1px solid #ece9f3;
+}
+.timeDayGrid::after {
+  content: "";
+  border-bottom: #dadce0 1px solid;
+  position: absolute;
+  width: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.timeIndicatorsTimeGrid {
+  display: flex;
+  height: 50vh;
+  overflow-y: auto;
+}
+.timeIndicatorsTimeGrid::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar {
+  background: transparent;
+  height: 8px;
+  width: 8px;
+}
+
+.timeIndicatorsTimeGrid::-webkit-scrollbar-thumb {
+  border-bottom: 4px solid white;
+  border-left: 4px solid white;
+  border-right: 4px solid white;
+  border-top: 4px solid white;
+}
+
+::-webkit-scrollbar-thumb {
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background: #dadce0;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  min-height: 40px;
+}
+.todayDatTime {
+  position: absolute;
+  height: 1px;
+  background-color: red;
+  position: absolute;
+  width: 100%;
+  z-index: 33;
+  pointer-events: none;
+}
+.todayDatTime::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid red;
+  position: absolute;
+  left: 0;
+  top: -5px;
+}
+
+.todayDatTime::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid red;
+  position: absolute;
+  right: 0;
+  top: -5px;
+}
+
+.weekTimeGridContainer {
+  min-width: 1200px;
+}

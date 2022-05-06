@@ -1,0 +1,40 @@
+.weekTimeGridContainer {
+  display: flex;
+  flex: 1 1 85%;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.calendar {
+  flex: 1 1 15%;
+}
+
+.bodyContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  margin: 0 auto;
+}
+.headerContainer {
+  display: flex;
+  gap: 1rem;
+}
+.action {
+  display: flex;
+  gap: 1rem;
+}
+.info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.yearMonth {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.today {
+  font-size: 1.3rem;
+  color: #a7b1c1;
+}

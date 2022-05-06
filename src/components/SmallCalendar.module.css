@@ -1,0 +1,79 @@
+.siteCalendarCustomizeHeaderWrapper {
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
+}
+
+.dayContainers {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.selectDate {
+  background-color: blue;
+  color: white;
+}
+
+.dateItem {
+  cursor: pointer;
+  text-align: center;
+  padding: 5px;
+}
+
+.dateItem:hover {
+  background-color: #f0f0f0;
+}
+
+.dateWeekNameItem {
+  text-align: center;
+  padding: 5px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+
+.actionIcon {
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.actionIcon:hover {
+  background-color: #f0f0f0;
+}
+
+.month {
+  font-weight: bold;
+}
+
+.headerInfo {
+}
+
+.headerInfo div {
+  text-align: center;
+}
+
+.isNotCurrentMonth {
+  color: #ccc;
+}
+
+.isToday {
+  background-color: #f0f0f0;
+}
+.isSelected {
+  background-color: #2cadf7 !important;
+  color: white !important;
+}
+.isSelected:hover {
+  background-color: #2cadf7 !important;
+  color: white !important;
+}
+.isCurrenWeek {
+  background-color: #f0f0f0;
+}
+
+.headerInfo .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  border: none;
+}
