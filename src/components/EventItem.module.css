@@ -12,6 +12,7 @@
 }
 .event:focus {
   z-index: 1000 !important;
+  width: 80% !important;
 }
 
 .event p {

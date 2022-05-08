@@ -58,6 +58,9 @@
   position: relative;
   height: calc(48px * ((24 * 2) - (7.5 * 2)));
 }
+.day_gird:hover{
+  cursor: pointer;
+}
 .time_day {
   height: 48px;
 }
@@ -85,9 +88,10 @@
   pointer-events: none;
 }
 
+
 .timeIndicatorsTimeGrid {
   display: flex;
-  height: 50vh;
+  height: 70vh;
   overflow-y: auto;
 }
 .timeIndicatorsTimeGrid::-webkit-scrollbar {

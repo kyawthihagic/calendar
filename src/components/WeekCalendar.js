@@ -3,6 +3,41 @@ import moment from "moment";
 import EventItem, { top } from "./EventItem";
 import styles from "./WeekCalendar.module.css";
 
+export const compareByTime = (first, second) => {
+  if (first.start.isBefore(second.start)) return -1;
+  if (first.start.isAfter(second.start)) return 1;
+  if (first.end.isBefore(second.end)) return 1;
+  if (first.end.isAfter(second.end)) return -1;
+  return 0;
+};
+
+export const sortAppointments = (appointments) =>
+  appointments.slice().sort((a, b) => compareByTime(a, b));
+
+export const findOverlappedAppointments = (sortedAppointments) => {
+  const appointments = sortedAppointments.slice();
+  const groups = [];
+  let totalIndex = 0;
+
+  while (totalIndex < appointments.length) {
+    groups.push([]);
+    const current = appointments[totalIndex];
+    const currentGroup = groups[groups.length - 1];
+    let next = appointments[totalIndex + 1];
+    let maxBoundary = current.end;
+
+    currentGroup.push(current);
+    totalIndex += 1;
+    while (next && maxBoundary.isAfter(next.start)) {
+      currentGroup.push(next);
+      if (maxBoundary.isBefore(next.end)) maxBoundary = next.end;
+      totalIndex += 1;
+      next = appointments[totalIndex];
+    }
+  }
+  return groups;
+};
+
 const times = [];
 for (let i = 8 * 60; i < 24 * 60; i += 30) {
   times.push(
@@ -43,12 +78,27 @@ function WeekCalendar({ evetDb, selectDate, addNewEvent, updateEvent }) {
     moment(start).format("YYYY-MM-DD")
   );
 
+  Object.keys(eventList).map(function (key) {
+    const sorted = sortAppointments(
+      eventList[key].map(({ start, end, ...obj }) => ({
+        start: moment(start),
+        end: moment(end),
+        ...obj,
+      }))
+    );
+    eventList[key] = findOverlappedAppointments(sorted);
+  });
+
+  console.log(eventList);
+
   const addEvent = (date) => (e) => {
     e.stopPropagation();
     if (e.target.getAttribute("data-type") === "dayGrid") {
       const rect = e.target.getBoundingClientRect();
       const y = e.clientY - rect.top; //y position within the element.
-      const minute = y * 0.625 + 7.5 * 60 + 1;
+      let minute = Math.round(y * 0.625 + 7.5 * 60 + 1);
+      minute = (((minute + 7.5) / 15) | 0) * 15;
+      console.log(minute);
       const start = moment(
         `${date}T${Math.floor(minute / 60)
           .toString()
@@ -106,13 +156,17 @@ function WeekCalendar({ evetDb, selectDate, addNewEvent, updateEvent }) {
               key={day.day}
             >
               {eventList[day.date]?.length &&
-                eventList[day.date].map((event) => (
-                  <EventItem
-                    key={event.id}
-                    event={event}
-                    updateEvent={updateEvent}
-                  />
-                ))}
+                eventList[day.date].map((events) =>
+                  events.map((event, index) => (
+                    <EventItem
+                      key={event.id}
+                      event={event}
+                      index={index}
+                      width={80 / events.length}
+                      updateEvent={updateEvent}
+                    />
+                  ))
+                )}
             </div>
           ))}
         </div>

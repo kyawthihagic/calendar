@@ -136,10 +136,7 @@ function Index() {
     );
   };
   return (
-    <Card
-      className={styles.container}
-      style={{ width: "70%", marginLeft: "auto", marginRight: "auto" }}
-    >
+    <Card className={styles.container}>
       <div className={styles.headerContainer}>
         <div className={styles.action}>
           <Button

@@ -34,7 +34,7 @@ const EventIndicator = styled.div`
   }
 `;
 
-function EventItem({ event, updateEvent }) {
+function EventItem({ event, updateEvent, index, width }) {
   const [isModalVisible, setIsModalVisible] = useState(event.type === "new");
   const [form] = Form.useForm();
 
@@ -111,6 +111,9 @@ function EventItem({ event, updateEvent }) {
           height: height(startMinute, endMinute),
           backgroundColor: color.card,
           borderColor: color.card,
+          zIndex: `${Number(5) + Number(index)}`,
+          left: `${index * width}%`,
+          width: `${width}%`,
         }}
         onClick={showModal}
       >
